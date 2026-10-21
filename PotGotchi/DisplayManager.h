@@ -1,6 +1,7 @@
 #ifndef DISPLAY_MANAGER_H
 #define DISPLAY_MANAGER_H
-#define TFT_CREAM 0xAC6D
+#define TFT_CREAM 0xF6DA
+#define TFT_WARMGRAY 0x9C91
 
 #include <Arduino.h>
 #include "ST7789_ESP32C3.h"

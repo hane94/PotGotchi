@@ -35,7 +35,7 @@ void DisplayManager::drawMainScreen(int moisture, int sunlight, int growth, int 
   if (moisture <= 20 || sunlight <= 20) {
     tft.setTextColor(TFT_RED);
   } else {
-    tft.setTextColor(TFT_WHITE);
+    tft.setTextColor(TFT_WARMGRAY);
   }
 
   tft.setCursor(40, 5);
@@ -45,11 +45,11 @@ void DisplayManager::drawMainScreen(int moisture, int sunlight, int growth, int 
   tft.printf("Sun:%d", sunlight);
   //%d는 숫자를 끼워넣으라는 자리표시자. 값은 그 뒤에 따라오는 moisture와 sunlight
 
-  tft.setTextColor(TFT_WHITE);
+  tft.setTextColor(TFT_WARMGRAY);
   tft.setCursor(5, 30);
   tft.print("Growth:");
 
-  tft.drawRect(95, 30, 175, 16, TFT_WHITE);
+  tft.drawRect(95, 30, 175, 16, TFT_WARMGRAY);
 
   int stageProgress = growth % 20;
   int fillWidth;
@@ -186,7 +186,7 @@ void DisplayManager::drawMinigameUI(int score, int timeLeft, int treatX, int tre
 
   tft.fillRect(0, 0, 280, 30, TFT_CREAM);
   tft.setTextSize(2);
-  tft.setTextColor(TFT_WHITE);
+  tft.setTextColor(TFT_WARMGRAY);
   tft.setCursor(10, 5);
   tft.printf("Score:%d  Time:%ds", score, timeLeft);
 
@@ -198,7 +198,7 @@ void DisplayManager::drawMinigameUI(int score, int timeLeft, int treatX, int tre
 void DisplayManager::drawMinigameTopBar(int score, int timeLeft) {
   tft.fillRect(0, 0, 280, 30, TFT_CREAM);
   tft.setTextSize(2);
-  tft.setTextColor(TFT_WHITE);
+  tft.setTextColor(TFT_WARMGRAY);
   tft.setCursor(10, 5);
   tft.printf("Score:%d  Time:%ds", score, timeLeft);
 }
