@@ -20,7 +20,7 @@ This project is licensed under **GPL-3.0**, inheriting the license of the origin
 
 3D 프린팅 케이스(STL)는 별도의 독립 창작물로, 소프트웨어 라이선스와 무관합니다.
 The 3D-printed case (STL files) is an independent original design, separate from the software license.
-
+- case:https://makerworld.com/en/models/3476394-potgotchi-diy-mini-game-plant-tamagotchi#profileId-3968646
 ---
 
 ## ✨ 주요 변경사항 / Key Changes
