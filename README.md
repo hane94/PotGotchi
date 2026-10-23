@@ -20,7 +20,7 @@ This project is licensed under **GPL-3.0**, inheriting the license of the origin
 
 3D 프린팅 케이스(STL)는 별도의 독립 창작물로, 소프트웨어 라이선스와 무관합니다.
 The 3D-printed case (STL files) is an independent original design, separate from the software license.
-
+- case:https://makerworld.com/en/models/3476394-potgotchi-diy-mini-game-plant-tamagotchi#profileId-3968646
 ---
 
 ## ✨ 주요 변경사항 / Key Changes
@@ -40,8 +40,8 @@ The 3D-printed case (STL files) is an independent original design, separate from
 - 1.69인치 TFT LCD 디스플레이 (ST7789V3, 240×280, SPI) / 1.69" TFT LCD display (ST7789V3, 240×280, SPI)
 - 1x4 버튼 모듈 / 1x4 button module
 
-자세한 조립 가이드는 `docs/` 폴더의 제작 가이드를 참고하세요.
-See the build guide in `docs/` for full assembly instructions.
+자세한 조립 가이드는 PDF제작 가이드를 참고하세요.
+See the build pdf guide for full assembly instructions.
 
 ## 📦 라이브러리 / Library
 
