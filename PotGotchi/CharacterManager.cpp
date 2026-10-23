@@ -51,20 +51,21 @@ void CharacterManager::update(DisplayManager& display) {
     display.drawSprite(x, y, spriteWidth, spriteHeight, baseFrame);
   }
 
-  if (currentAction == EATING) {
-    display.drawTransparentImage(x + 15, y + 10, 20, 20, water_frame, TFT_BLACK);
-    display.drawTransparentImage(x + 50, y + 5, 20, 20, water_frame, TFT_BLACK);
-    display.drawTransparentImage(x + 80, y + 15, 20, 20, water_frame, TFT_BLACK);
+  // 물/하트 이펙트는 식물 꼭대기 위에 띄운다. (꽃봉오리·꽃이 위로 자라도 겹치지 않게)
+  // plantTopRow: 단계별 식물의 가장 윗줄(스프라이트 안의 y 위치)
+  static const int plantTopRow[5] = { 44, 32, 15, 9, 7 };
+  int effectBaseY = y + plantTopRow[growthStage] - 26;
+  if (effectBaseY < 75) effectBaseY = 75;  // 상단 Water/Sun/Growth 영역(0~70)을 침범하지 않게
+
+  if (currentAction == EATING || currentAction == PLAYING) {
+    const uint16_t* effect = (currentAction == EATING) ? water_frame : heart_frame;
+    display.drawTransparentImage(x + 15, effectBaseY + 6, 20, 20, effect, TFT_BLACK);
+    display.drawTransparentImage(x + 50, effectBaseY, 20, 20, effect, TFT_BLACK);
+    display.drawTransparentImage(x + 80, effectBaseY + 8, 20, 20, effect, TFT_BLACK);
 
     if (currentTime - actionStartTime > 2000) {
-      setAction(IDLE);
-    }
-  } else if (currentAction == PLAYING) {
-    display.drawTransparentImage(x + 15, y + 10, 20, 20, heart_frame, TFT_BLACK);
-    display.drawTransparentImage(x + 50, y + 5, 20, 20, heart_frame, TFT_BLACK);
-    display.drawTransparentImage(x + 80, y + 15, 20, 20, heart_frame, TFT_BLACK);
-
-    if (currentTime - actionStartTime > 2000) {
+      // 스프라이트 위쪽 영역에 그린 이펙트는 스프라이트가 지워주지 않으므로 직접 지운다.
+      display.clearTrail(x, x + spriteWidth, y - 40, spriteWidth, 40);
       setAction(IDLE);
     }
   }
