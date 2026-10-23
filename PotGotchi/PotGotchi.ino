@@ -7,6 +7,7 @@
 enum GameState { STATE_MAIN,
                  STATE_MENU,
                  STATE_DEAD,
+                 STATE_CONFIRM_RESET,
                  STATE_MINIGAME };
 
 GameState currentState = STATE_MAIN;
@@ -30,7 +31,7 @@ int menuSelection = 0;
 int mgLastScore = -1;
 int mgLastTime = -1;
 
-const int NUM_MENU_ITEMS = 4;
+const int NUM_MENU_ITEMS = 5;
 
 uint32_t mgStartTime = 0;
 
@@ -135,6 +136,10 @@ void loop() {
           sound.playHappyTone();
           currentState = STATE_MAIN;
         } else if (menuSelection == 3) {
+          currentState = STATE_CONFIRM_RESET;
+          menuSelection = 0;  // 기본 선택은 No (실수로 리셋되지 않게)
+          display.drawResetConfirm(menuSelection);
+        } else if (menuSelection == 4) {
           currentState = STATE_MAIN;
         }
       if (currentState == STATE_MAIN) {
@@ -208,6 +213,29 @@ void loop() {
 
     display.updateMinigameTreat(mgTreatX, mgTreatY, mgOldTreatX, mgOldTreatY);
     cat.update(display);
+  }
+
+  else if (currentState == STATE_CONFIRM_RESET) {
+    if (input.isLeftPressed() || input.isRightPressed()) {
+      sound.playClick();
+      menuSelection = (menuSelection == 0) ? 1 : 0;
+      display.drawResetConfirm(menuSelection);
+    }
+    if (input.isOkPressed()) {
+      sound.playClick();
+      if (menuSelection == 1) {
+        pet.reset();
+        cat.setAction(IDLE);
+        sound.playHappyTone();
+      }
+      currentState = STATE_MAIN;
+      display.forceFullRedraw(pet.getMoisture(), pet.getSunlight(), pet.getGrowth(), pet.getGrowthStage(), pet.getWeedCount());
+      lastMoisture = -1;
+      lastSunlight = -1;
+      lastGrowth = -1;
+      lastWeedCount = -1;
+      lastCatX = cat.getX();
+    }
   }
 
   else if (currentState == STATE_DEAD) {

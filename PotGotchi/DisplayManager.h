@@ -27,6 +27,7 @@ public:
   void drawWeeds(int count);
   void drawMenu(int selectedIndex);
   void drawGameOver(int selectedIndex);
+  void drawResetConfirm(int selectedIndex);
   void drawMinigameUI(int score, int timeLeft, int treatX, int treatY, int oldTreatX, int oldTreatY);
 
   void drawMinigameTopBar(int score, int timeLeft);

@@ -134,13 +134,13 @@ void DisplayManager::drawWeeds(int count) {
 }
 
 void DisplayManager::drawMenu(int selectedIndex) {
-  const char* menuItems[] = { "Water", "Sunlight", "Clean", "Exit" };
+  const char* menuItems[] = { "Water", "Sunlight", "Clean", "Reset", "Exit" };
 
   tft.fillRoundRect(40, 40, 200, 165, 10, TFT_BLACK);
   tft.drawRoundRect(40, 40, 200, 165, 10, TFT_WHITE);
   tft.setTextSize(2);
 
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < 5; i++) {
     if (i == selectedIndex) {
       tft.setTextColor(TFT_CREAM);
       tft.setCursor(60, 55 + (i * 25));
@@ -164,6 +164,31 @@ void DisplayManager::drawGameOver(int selectedIndex) {
   tft.print("R.I.P.");
 
   const char* options[] = { "Restart", "Leave" };
+
+  for (int i = 0; i < 2; i++) {
+    if (i == selectedIndex) {
+      tft.setTextColor(TFT_CREAM);
+      tft.setCursor(60, 115 + (i * 25));
+      tft.print("> ");
+    } else {
+      tft.setTextColor(TFT_WHITE);
+      tft.setCursor(60, 115 + (i * 25));
+      tft.print("  ");
+    }
+    tft.println(options[i]);
+  }
+}
+
+void DisplayManager::drawResetConfirm(int selectedIndex) {
+  tft.fillRoundRect(30, 70, 220, 100, 10, TFT_BLACK);
+  tft.drawRoundRect(30, 70, 220, 100, 10, TFT_WHITE);
+  tft.setTextSize(2);
+
+  tft.setTextColor(TFT_RED);
+  tft.setCursor(50, 85);
+  tft.print("Reset plant?");
+
+  const char* options[] = { "No", "Yes" };
 
   for (int i = 0; i < 2; i++) {
     if (i == selectedIndex) {
